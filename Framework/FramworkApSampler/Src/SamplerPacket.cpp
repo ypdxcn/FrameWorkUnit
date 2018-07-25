@@ -20,16 +20,17 @@ CSamplerPacket::~CSamplerPacket(void)
 {
 }
 
-//void  CSamplerPacket::Decode(const char * pData, unsigned int nLength)
-//{
-//	BlockDecode(pData,nLength);
-//	GetCmdID();
-//}
-//
-//const char* CSamplerPacket::Encode(unsigned int & usLen)
-//{
-//	return BlockEncode(usLen);
-//}
+void  CSamplerPacket::Decode(const char * pData, unsigned int nLength)
+{
+	//BlockDecode(pData,nLength);
+	GetCmdID();
+}
+
+const char* CSamplerPacket::Encode(unsigned int & usLen)
+{
+	//return BlockEncode(usLen);
+	return nullptr;
+}
 
 const string& CSamplerPacket::GetCmdID()
 {

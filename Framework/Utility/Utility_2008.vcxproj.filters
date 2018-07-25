@@ -72,6 +72,9 @@
     <ClCompile Include="Src\TimerHandler.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Src\SubscriberTbl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Config.h">
@@ -147,6 +150,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Include\TimerHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SubscriberTbl.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

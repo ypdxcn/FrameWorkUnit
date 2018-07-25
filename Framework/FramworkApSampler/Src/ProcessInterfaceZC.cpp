@@ -136,7 +136,9 @@ int CProcessInterfaceZC::OnConnect()
 	//CreateTimer(m_GessPktInfo.ulIdleInterval);
 
 	CSamplerPacket oPacketLogin(YL_LOGIN);
-	CMessage &  msg = oPacketLogin.GetMsg();
+	//CMessage &  msg = oPacketLogin.GetMsg();
+	CMessageImpl &  msg = dynamic_cast<CMessageImpl &>(oPacketLogin.GetMsg());
+
 	msg.SetField(MSG_SEQ_ID,++m_GessPktInfo.ulSeqNo);
 	msg.SetField(MSG_NODE_ID,m_GessPktInfo.node_id);
 	msg.SetField(MSG_LOGIN_ID, m_GessPktInfo.sUserName);

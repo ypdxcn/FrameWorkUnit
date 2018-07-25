@@ -20,6 +20,9 @@ public:
 	virtual int GetField(int nKey, unsigned int & nValue) const = 0;
 	virtual int SetField(int nKey, unsigned int nValue) = 0;
 
+	virtual int GetField(int nKey, unsigned long & nValue) const = 0;
+	virtual int SetField(int nKey, unsigned long nValue) = 0;
+
 	virtual int Copy(const CMessage & srcMsg, bool bReplace) = 0;
 
 	virtual int Erase(int nKey) = 0;
@@ -48,6 +51,9 @@ public:
 
 	int GetField(int nKey, unsigned int & nValue) const;
 	int SetField(int nKey, unsigned int nValue);
+
+	int GetField(int nKey, unsigned long & nValue) const;
+	int SetField(int nKey, unsigned long nValue);
 
 	int SetField(int nKey, char cType, const std::string & sValue);
 	int GetField(int nKey, char cType, std::string & sValue) const;

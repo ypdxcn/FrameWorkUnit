@@ -37,7 +37,7 @@ int CNanoServerImp::RetSetSvr()
 {
 	m_sock = nn_socket(AF_SP, NN_REQ);
 
-	if (nn_bind(m_sock, strUrl.c_str()) >= 0)
+	if (nn_bind(m_sock, strUrl.c_str()) >=0)
 		return  0;
 	else
 		return  -1;//°ó¶¨Ê§°Ü
@@ -111,7 +111,7 @@ int CNanoServerImp::RetSetSvr()
 			file, line);*/
 		abort();
 	}
-	if (memcmp(data, buf, data_len) != 0) {
+	if (memcmp(data, buf, data_len) !=0) {
 		/*  We don't print the data as it may have binary garbage  */
 		/*fprintf(stderr, "Received data is wrong (%s:%d)\n", file, line);
 		abort();*/

@@ -11,6 +11,8 @@ int main()
 	try
 	{
 
+#ifdef WIN32
+
 		char szFileName[_MAX_PATH], szFilePath[_MAX_PATH];
 		char * pcName;
 		::GetModuleFileName(0, szFileName, _MAX_PATH);
@@ -28,6 +30,19 @@ int main()
 			CRLog(E_ERROR, "%s", "Error at WSAStartup()");
 			return -1;
 		}
+
+
+#else
+		signal(SIGPIPE, SIG_IGN);
+		signal(SIGHUP, SIG_IGN);
+		signal(SIGINT, SIG_IGN);
+		signal(SIGUSR1, SIG_IGN);
+		signal(SIGUSR2, SIG_IGN);
+		signal(SIGALRM, SIG_IGN);
+
+		signal(SIGCHLD, SIG_IGN);
+#endif
+
 
 		if (0 == theMgr.Init())
 		{
@@ -49,7 +64,10 @@ int main()
 			Sleep(2);
 		}
 
+#ifdef WIN32
+
 		WSACleanup();
+#endif
 
 		return 0;
 

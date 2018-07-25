@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>FramworkApSampler</ProjectName>
-    <ProjectGuid>{7C96B28B-225D-4C31-8674-6F80757833DF}</ProjectGuid>
+    <ProjectGuid>{45189EB0-3A8F-4BF2-A9C9-515048DFAD11}</ProjectGuid>
     <RootNamespace>FramworkApRisk</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>

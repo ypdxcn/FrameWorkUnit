@@ -59,7 +59,7 @@ int MainCPMgr::Init()
 		return -1;
 	}
 
-	CRLog(E_APPINFO, "%s", "服务器开始运行v20180618!");
+	CRLog(E_APPINFO, "%s", "服务器开始运行v20180718!");
 
 	m_oIfQTTimer.Bind(this);
 	m_oIfTDTimer.Bind(this);
@@ -185,4 +185,30 @@ int MainCPMgr::AnalyData(const char *data, int  len)
 	}
 
 	return -1;
+}
+
+
+
+
+int MainCPMgr::OnAccept(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort)
+{
+	return 0;
+}
+int MainCPMgr::OnConnect(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort, int nFlag)
+{
+	return 0;
+}
+int MainCPMgr::OnLogin(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort, int nFlag)
+{
+	return 0;
+}
+int MainCPMgr::OnClose(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort)
+{
+	return 0;
+}
+
+int MainCPMgr::Forward(CPacket &GessPacket, const unsigned long& ulKey)
+{
+
+	return 0;
 }

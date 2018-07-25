@@ -143,6 +143,37 @@ int CMessageImpl::SetField(int nKey, unsigned int nValue)
 	return 0;
 }
 
+int CMessageImpl::GetField(int nKey, unsigned long & nValue) const
+{
+	FIELD_MAP::const_iterator it = m_Fields.find(nKey);
+	if (it == m_Fields.end())
+		return -1;
+
+	const FIELD_ITEM & field = (*it).second;
+
+	if (field.cType == SHORT || field.cType == LONG)
+	{
+		nValue = field.ulValue;
+		return 0;
+	}
+
+	nValue = strtoul(field.sValue.c_str(), NULL, 16);
+
+	return 0;
+}
+
+int CMessageImpl::SetField(int nKey, unsigned long nValue)
+{
+	FIELD_ITEM field;
+	field.cType = LONG;
+	field.sValue = uintstr(nValue, 16, 8).c_str();
+	field.ulValue = nValue;
+
+	m_Fields[nKey] = field;
+	return 0;
+}
+
+
 int CMessageImpl::Erase(int nKey)
 {
 	if (m_Fields.erase(nKey) > 0)

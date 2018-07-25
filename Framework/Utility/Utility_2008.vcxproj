@@ -209,6 +209,7 @@
     <ClCompile Include="Src\MD5.cpp" />
     <ClCompile Include="Src\NetLogDev.cpp" />
     <ClCompile Include="src\strutils.cpp" />
+    <ClCompile Include="Src\SubscriberTbl.cpp" />
     <ClCompile Include="Src\ThreadInterface.cpp" />
     <ClCompile Include="Src\TimerHandler.cpp" />
   </ItemGroup>
@@ -235,6 +236,7 @@
     <ClInclude Include="include\osdepend.h" />
     <ClInclude Include="include\Singleton.h" />
     <ClInclude Include="include\strutils.h" />
+    <ClInclude Include="Include\SubscriberTbl.h" />
     <ClInclude Include="Include\ThreadInterface.h" />
     <ClInclude Include="Include\TimerHandler.h" />
     <ClInclude Include="Include\WorkThread.h" />

@@ -75,8 +75,8 @@ public:
 	const string& GetCmdID();
 	std::string RouteKey();
 
-	//void  Decode(const char * pData, unsigned int nLength);
-	//const char* Encode(unsigned int & usLen);
+	void  Decode(const char * pData, unsigned int nLength);
+	const char* Encode(unsigned int & usLen);
 private:
 	string m_sCmdID;
 

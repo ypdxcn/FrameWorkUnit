@@ -1,13 +1,16 @@
 #pragma once
 
-#include "Gess.h"
+
 #include "Logger.h"
 #include "WorkThread.h"
 #include "ConfigImpl.h"
 #include "NanoServerImp.h"
 #include "Communication.h"
+#include "ipcpacket.h"
+#include "broadcastpacket.h"
 
-class MainCPMgr //: public CProtocolCpMgr
+
+class MainCPMgr : public CProtocolCpMgr
 {
 private:
 	//异步退出线程
@@ -122,7 +125,13 @@ private:
 
 
 
+public:
+	virtual int OnAccept(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort) override;
+	virtual int OnConnect(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort, int nFlag) override;
+	virtual int OnLogin(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort, int nFlag) override;
+	virtual int OnClose(const unsigned long& ulKey, const string& sLocalIp, int nLocalPort, const string& sPeerIp, int nPeerPort) override;
 
+	virtual int Forward(CPacket &GessPacket, const unsigned long& ulKey) override;
 
 public:
 	MainCPMgr();
