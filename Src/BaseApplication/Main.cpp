@@ -50,9 +50,9 @@ int main()
 			{
 				theMgr.StartMe();
 				theMgr.Run();
-				/*theMgr.StopMe();
+				theMgr.StopMe();
 				theMgr.Stop();
-				theMgr.Finish();*/
+				theMgr.Finish();
 			}
 			else
 			{

@@ -2,6 +2,9 @@
 #include <string>
 using namespace std;
 
+#include "reqrep.h"
+#include "pubsub.h"
+
 class CNanoServerImp
 {
 public:
@@ -14,12 +17,12 @@ public:
 		return &imp;
 	}*/
 
-	int  InitServerUrl(const char *url, int port=9090);
+	int  InitServerUrl(const char *url, int port=9090, int serverType = NN_PUB);
 	int  setsockopt_impl(  int level, int option, const void *optval, size_t optlen);
 	void close_impl();
-	void send_impl(  char *data);
+	int  send_impl(  char *data);
 	int  recv_impl(  char *data);
-	int  RetSetSvr();
+	int  RetSetSvr(  int serverType = NN_PUB);
 private:
 
 	int m_sock;

@@ -28,3 +28,16 @@ StdAfx.h, StdAfx.cpp
 应用程序向导使用“TODO:”注释来指示应添加或自定义的源代码部分。
 
 /////////////////////////////////////////////////////////////////////////////
+1.mongoose   webserver 支持 https的步骤
+1. 创建证书
+openssl genrsa -out privatekey.pem 1024
+openssl req -new -x509 -key privatekey.pem -out publickey.cer -days 1825
+
+2.拷贝privatekey.pem和publickey.cer的内容到同一个文件，并命名为key.pem
+3. 在mongoose.c的顶部定义#define MONGOOSE_USE_SSL
+4. 设置监听port和pem的路径
+static std::string s_port = "8008r,443s";
+static std::string ssl_cert_path = "/Volumes/SD/key.pem";
+
+mg_set_option(server[i], "listening_port", s_port.c_str());
+mg_set_option(server[i], "ssl_certificate", ssl_cert_path.c_str());

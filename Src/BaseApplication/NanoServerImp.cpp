@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-#include "nn.h"
+
 //#include "utils\err.h"
-#include "reqrep.h"
+
 
 char  localBuf[4096];
 
@@ -19,10 +19,10 @@ CNanoServerImp::~CNanoServerImp()
 {
 }
 
-
-int CNanoServerImp::InitServerUrl(const char *url, int port)
+//NN_REQ,NN_PUB
+int CNanoServerImp::InitServerUrl(const char *url, int port,int serverType)
 {
-	m_sock = nn_socket(AF_SP, NN_REQ);
+	m_sock = nn_socket(AF_SP, serverType);
 
 	if (nn_bind(m_sock, url) >= 0)
 		return  0;
@@ -33,9 +33,9 @@ int CNanoServerImp::InitServerUrl(const char *url, int port)
 	return m_sock;
 }
 
-int CNanoServerImp::RetSetSvr()
+int CNanoServerImp::RetSetSvr(int serverType)
 {
-	m_sock = nn_socket(AF_SP, NN_REQ);
+	m_sock = nn_socket(AF_SP, serverType);
 
 	if (nn_bind(m_sock, strUrl.c_str()) >=0)
 		return  0;
@@ -68,7 +68,7 @@ int CNanoServerImp::RetSetSvr()
 	}
 
 }
- void CNanoServerImp::send_impl( char *data)
+ int  CNanoServerImp::send_impl( char *data)
 {
 	size_t data_len = strlen(data);
 	int rc = nn_send(m_sock, data, data_len, 0);
@@ -84,6 +84,7 @@ int CNanoServerImp::RetSetSvr()
 			file, line);*/
 		abort();
 	}
+	return  rc;
 }
 
  

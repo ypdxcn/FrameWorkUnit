@@ -1,31 +1,50 @@
 #include "MainCPMgr.h"
 #include "GessTimerMgrPosix.h"
+#include "ServiceHandle.h"
+
+
+
 
 
 
 MainCPMgr::MainCPMgr()
 {
-	m_pConfig = new CConfigImpl();
+	m_pConfig   = new CConfigImpl();
+	
 }
 
 
 MainCPMgr::~MainCPMgr()
 {
+	if (m_pConfig != nullptr)
+	{
+		delete m_pConfig;
+	}
+
+	if (m_nanoserver != nullptr)
+	{
+		delete m_nanoserver;
+	}
+
+	if (m_WebServer != nullptr)
+	{
+		delete m_WebServer;
+	}
 }
 
 int MainCPMgr::OnIfkTimeout(const string& ulKey)
 {
 	if (ulKey == "quotation")
 	{
-		CRLog(E_APPINFO, "%s", "[行情定时器]");
+		CRLog(E_APPINFO, "%s", "[行情定时器]-响应逻辑");
 	}
 	else if (ulKey == "tradeRecord")
 	{
-		CRLog(E_APPINFO, "%s", "[交易定时器]");
+		CRLog(E_APPINFO, "%s", "[交易定时器]-响应逻辑");
 	}
 	else if (ulKey == "Strategy")
 	{
-		CRLog(E_APPINFO, "%s", "[策略定时器]");
+		CRLog(E_APPINFO, "%s", "[策略定时器]-响应逻辑");
 	}
 
 	return 0;//返回-1，定时器执行一次就删除，返回0，多次运行
@@ -68,12 +87,28 @@ int MainCPMgr::Init()
 	m_pGessTimerMgr = CGessTimerMgrImp::Instance();
 	m_pGessTimerMgr->Init(2);
 	
-	m_nanoserver.Bind(this);
-	m_nanoserver.InitServerUrl("tcp://127.0.0.1:5560");
+	//业务逻辑，架设了nanomsg服务组件
+	m_nanoserver = new  CNanoServerThread;
+	m_nanoserver->Bind(this);
+	m_nanoserver->Init();
+
+	//
+	m_mainService = new CServiceHandle();
+	if (m_mainService->Init(m_pConfig) != 0)
+	{
+		return  -1;
+	}
+	m_mainService->Bind(this, EnumKeyMainService);
+	
+	//web server
+	m_WebServer = new CWebServerThread();
+	m_WebServer->Bind(this);
+
 	return 0;
 }
 void MainCPMgr::Finish()
 {
+	
 	m_pGessTimerMgr->Finish();
 
 }
@@ -90,8 +125,12 @@ int MainCPMgr::StartMe()
 	m_pGessTimerMgr->CreateTimer(&m_oIfQTTimer, 5, "quotation");
 	m_pGessTimerMgr->CreateTimer(&m_oIfSTTimer, 2, "Strategy");
 
-
+	m_mainService->Start();
 	m_pGessTimerMgr->Start();
+	m_nanoserver->BeginThread();
+	CRLog(E_APPINFO, "%s", "NanoMsg消息队列中间件开始运行!");
+	m_WebServer->BeginThread();
+	CRLog(E_APPINFO, "%s", "Web服务器开始运行!");
 
 	return 0;
 }
@@ -102,6 +141,8 @@ void MainCPMgr::Stop()
 	m_pGessTimerMgr->DestroyTimer(&m_oIfSTTimer, "Strategy");
 
 	m_pGessTimerMgr->Stop();
+	m_nanoserver->EndThread();
+	m_WebServer->EndThread();
 }
 
 void MainCPMgr::StopMe()

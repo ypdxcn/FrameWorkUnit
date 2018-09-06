@@ -101,7 +101,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,16 +149,24 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseDefine.h" />
     <ClInclude Include="Communication.h" />
+    <ClInclude Include="db_plugin.h" />
     <ClInclude Include="MainCPMgr.h" />
+    <ClInclude Include="mongoose.h" />
     <ClInclude Include="NanoServerImp.h" />
     <ClInclude Include="ServiceHandle.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="webServerHandle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="db_plugin_sqlite.c" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainCPMgr.cpp" />
+    <ClCompile Include="mongoose.c" />
     <ClCompile Include="NanoServerImp.cpp" />
     <ClCompile Include="ServiceHandle.cpp" />
+    <ClCompile Include="sqlite3.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
