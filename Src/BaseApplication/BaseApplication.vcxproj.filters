@@ -9,9 +9,11 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Test_function">
+      <UniqueIdentifier>{ad3f37b0-f607-4472-bed8-c0d4d3b2da74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{fd2c7ec2-5587-4bd6-bd54-a03cbd4c85ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +32,48 @@
     <ClInclude Include="ServiceHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BaseDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="db_plugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mongoose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="webServerHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test_http_get_post_libcurl.hpp">
+      <Filter>Test_function</Filter>
+    </ClInclude>
+    <ClInclude Include="Test_http_get_post_beast.hpp">
+      <Filter>Test_function</Filter>
+    </ClInclude>
+    <ClInclude Include="Test_http_get_json_winhttp.hpp">
+      <Filter>Test_function</Filter>
+    </ClInclude>
+    <ClInclude Include="NngServerImp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="process.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test_nng_reqrep.hpp">
+      <Filter>Test_function</Filter>
+    </ClInclude>
+    <ClInclude Include="test_tinyProcessLibrary.h">
+      <Filter>Test_function</Filter>
+    </ClInclude>
+    <ClInclude Include="UvServerImp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uvPacketStruct.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -42,6 +86,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ServiceHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="db_plugin_sqlite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mongoose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NngServerImp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process_win.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UvServerImp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

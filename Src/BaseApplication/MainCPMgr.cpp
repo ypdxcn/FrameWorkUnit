@@ -3,10 +3,6 @@
 #include "ServiceHandle.h"
 
 
-
-
-
-
 MainCPMgr::MainCPMgr()
 {
 	m_pConfig   = new CConfigImpl();

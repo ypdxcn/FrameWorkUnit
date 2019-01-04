@@ -42,7 +42,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -74,6 +74,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Bin64</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,15 +98,18 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CONSOLE;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Framework\CommFramwork\Include;..\..\Framework\Utility\Include;..\..\Framework\Include\pthread_64;D:\GitHub\QTGuiSample\Third\nanomsg-1.1.2\src;D:\GitHub\qt_spread\Third\qjson-master\include;D:\GitHub\qt_spread\Third\qjson-master\src;..\..\Framework\FramworkAp\Include;..\..\Framework\FramworkApSampler\Include;..\..\Framework\BlockMsg\Include;E:\Bin64_all\libcur\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\Bin64;E:\Bin64_all\libcur</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WS2_32.LIB;UTILITY.LIB;FramworkAp.lib;FramworkApSampler.lib;CommFramwork.lib;nanomsg.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,17 +136,18 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Framework\CommFramwork\Include;..\..\Framework\Utility\Include;..\..\Framework\Include\pthread_64;E:\work\nanomsg-master\src;E:\work\qjson-0.9.0\qjson-0.9.0\include;E:\work\qjson-0.9.0\qjson-0.9.0\src;..\..\Framework\FramworkAp\Include;..\..\Framework\FramworkApSampler\Include;..\..\Framework\BlockMsg\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CONSOLE;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\Framework\CommFramwork\Include;..\..\Framework\Utility\Include;..\..\Framework\Include\pthread_64;D:\GitHub\QTGuiSample\Third\nanomsg-1.1.2\src;..\..\Framework\FramworkAp\Include;..\..\Framework\FramworkApSampler\Include;..\..\Framework\BlockMsg\Include;E:\Bin64_all\libcur\include\curl;$(BOOST64_BASE_DIR_VS2015);E:\Third\nng-1.1.1\nng-1.1.1\src;E:\Third\libuv-1.24.1\libuv-1.24.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>WS2_32.LIB;UTILITY.LIB;FramworkAp.lib;FramworkApSampler.lib;CommFramwork.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\Bin64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Wldap32.lib;WS2_32.LIB;UTILITY.LIB;FramworkAp.lib;FramworkApSampler.lib;CommFramwork.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;nng.lib;uv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Bin64;E:\Bin64_all\libcur;$(BOOST64_LIB_DIR_VS2015);E:\Third\nng-1.1.1\nng-1.1.1\build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -155,8 +160,17 @@
     <ClInclude Include="MainCPMgr.h" />
     <ClInclude Include="mongoose.h" />
     <ClInclude Include="NanoServerImp.h" />
+    <ClInclude Include="NngServerImp.h" />
+    <ClInclude Include="process.hpp" />
     <ClInclude Include="ServiceHandle.h" />
     <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="Test_http_get_json_winhttp.hpp" />
+    <ClInclude Include="Test_http_get_post_libcurl.hpp" />
+    <ClInclude Include="Test_http_get_post_beast.hpp" />
+    <ClInclude Include="Test_nng_reqrep.hpp" />
+    <ClInclude Include="test_tinyProcessLibrary.h" />
+    <ClInclude Include="uvPacketStruct.h" />
+    <ClInclude Include="UvServerImp.h" />
     <ClInclude Include="webServerHandle.h" />
   </ItemGroup>
   <ItemGroup>
@@ -165,8 +179,12 @@
     <ClCompile Include="MainCPMgr.cpp" />
     <ClCompile Include="mongoose.c" />
     <ClCompile Include="NanoServerImp.cpp" />
+    <ClCompile Include="NngServerImp.cpp" />
+    <ClCompile Include="process.cpp" />
+    <ClCompile Include="process_win.cpp" />
     <ClCompile Include="ServiceHandle.cpp" />
     <ClCompile Include="sqlite3.c" />
+    <ClCompile Include="UvServerImp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

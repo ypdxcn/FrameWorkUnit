@@ -124,3 +124,5 @@ int CNanoServerImp::RetSetSvr(int serverType)
 	return (int) data_len;
 	//free(buf);
 }
+
+

@@ -3,13 +3,20 @@
 
 #include "Gess.h"
 #include "MainCPMgr.h"
-
+#include "Test_http_get_post_libcurl.hpp"
+#include "Test_http_get_post_beast.hpp"
+#include "Test_http_get_json_winhttp.hpp"
+#include "test_tinyProcessLibrary.h"
 MainCPMgr  theMgr;
 
 int main()
 {
 	try
 	{
+		//test_process_tiny_lib();
+		//test_winhttp_get_json();
+		test_Libcurl();
+		test_beast();
 
 #ifdef WIN32
 
@@ -42,7 +49,6 @@ int main()
 
 		signal(SIGCHLD, SIG_IGN);
 #endif
-
 
 		if (0 == theMgr.Init())
 		{

@@ -268,13 +268,13 @@ public:
 	void ReadyToQuit() { m_nReadyQuit = 1; }
 	bool IsReadyToQuit() { return 1 == m_nReadyQuit; }
 
-	//
+	//多种网络服务
 	CNanoServerThread  *m_nanoserver;
 
 	//登录注册服务
 	CConnectPointAsyn  *m_mainService;
 
-	//数据
+	//web服务
 	CWebServerThread   *m_WebServer;
 
 };
